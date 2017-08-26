@@ -1,5 +1,6 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+
+const app = express();
 
 app.use(express.static('./src/dist/'));
 
@@ -7,6 +8,6 @@ app.use(express.static('./src/dist/'));
 //   res.send('Hello World!');
 // });
 
-app.listen(3000, function () {
+app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
 });

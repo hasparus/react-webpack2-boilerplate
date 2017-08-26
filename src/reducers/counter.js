@@ -5,7 +5,7 @@ import { increaseCounter, setCounter } from '../actions/counter';
 const defaultState = { counter: 0 };
 
 const counter = createReducer({
-  [increaseCounter]: (state) => ({
+  [increaseCounter]: state => ({
     ...state,
     counter: state.counter + 1,
   }),

@@ -1,18 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { AppContainer } from 'react-hot-loader';
-// AppContainer is a necessary wrapper component for HMR
-
 import Main from './components/Main';
-
-import reducers from './redux/reducers';
-
+import reducers from './reducers';
 import { createStore, applyMiddleware, compose } from 'redux';
-
 import createSagaMiddleware from 'redux-saga';
-
-import sagas from './redux/sagas';
+import sagas from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,18 +13,20 @@ const store = createStore(
   reducers,
   compose(
     applyMiddleware(sagaMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
+    window.devToolsExtension ? window.devToolsExtension() : f => f,
+  ),
 );
 
 let sagaTask = sagaMiddleware.run(sagas);
 
-const render = (Component) => {
+console.log('rendering!');
+
+const render = Component => {
   ReactDOM.render(
     <AppContainer>
-      <Component store={ store }/>
+      <Component store={store} />
     </AppContainer>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 };
 
@@ -40,7 +35,7 @@ render(Main);
 // Hot Module Replacement API
 if (module.hot) {
   module.hot.accept('./components/Main', () => {
-    render(Main)
+    render(Main);
   });
 
   module.hot.accept('./redux/reducers', () => {
@@ -50,13 +45,10 @@ if (module.hot) {
 
   module.hot.accept('./redux/sagas', () => {
     const newSagas = require('./redux/sagas').default;
-    sagaTask.cancel()
+    sagaTask.cancel();
     sagaTask.done.then(() => {
       sagaTask = sagaMiddleware.run(newSagas);
-    })
-  })
+    });
+  });
 }
-
-
-
 
