@@ -38,13 +38,13 @@ if (module.hot) {
     render(Main);
   });
 
-  module.hot.accept('./redux/reducers', () => {
-    const reducers = require('./redux/reducers').default;
+  module.hot.accept('./reducers', () => {
+    const reducers = require('./reducers').default;
     return store.replaceReducer(reducers);
   });
 
-  module.hot.accept('./redux/sagas', () => {
-    const newSagas = require('./redux/sagas').default;
+  module.hot.accept('./sagas', () => {
+    const newSagas = require('./sagas').default;
     sagaTask.cancel();
     sagaTask.done.then(() => {
       sagaTask = sagaMiddleware.run(newSagas);

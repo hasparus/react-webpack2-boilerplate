@@ -3,7 +3,7 @@ import styles from './FirstPage.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { increaseCounter, increaseRandomAsync } from '../redux/actions/counter';
+import { increaseCounter, increaseRandomAsync } from '../actions/counter';
 
 const mapStateToProps = state => ({
   counter: state.counter,

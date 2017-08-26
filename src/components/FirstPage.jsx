@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class FirstPage extends Component {
   render() {
     return (<div className={styles.firstPage}>
-      <h2>Test first page</h2>
+      <h2>This is actually obnoxious...</h2>
       <Link to="/second">Go to second</Link>
     </div>);
   }
